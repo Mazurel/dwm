@@ -900,7 +900,7 @@ drawbar(Monitor *m)
 	}
 
 	resizebarwin(m);
-	for (c = m->clients; c; c = c->next) {
+	for (c = m->cl->clients; c; c = c->next) {
 		occ |= c->tags;
 		if (c->isurgent)
 			urg |= c->tags;
@@ -2123,7 +2123,7 @@ toggleview(const Arg *arg)
 		/* test if the user did not select the same tag */
 		if (!(newtagset & 1 << (selmon->pertag->curtag - 1))) {
 			selmon->pertag->prevtag = selmon->pertag->curtag;
-			for (i = 0; !(newtagset & 1 << i); i++) ;
+			for (unsigned int i = 0; !(newtagset & 1 << i); i++) ;
 			selmon->pertag->curtag = i + 1;
 		}
 
